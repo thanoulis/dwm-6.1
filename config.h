@@ -115,8 +115,6 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 // commands
-// -- touchpad -----------------------------------------------------
-static const char *touchpad[]       = { "system-utils", "touchpad", NULL };
 // -- programs -----------------------------------------------------
 static char dmenumon[2]             = "0";      /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, "-p", "Execute:", NULL };
@@ -137,13 +135,13 @@ static const char *volume_up[]      = { "system-utils", "volume", "up", NULL };
 static const char *volume_down[]    = { "system-utils", "volume", "down", NULL };
 static const char *volume_toggle[]  = { "system-utils", "volume", "toggle", NULL };
 // -- screenshot ---------------------------------------------------
-static const char *screenshot[]     = { "system-utils", "screenshot", NULL };
-static const char *selectshot[]     = { "system-utils", "selectshot", NULL };
+static const char *screenshot[]     = { "system-utils", "printscreen", "all", NULL };
+static const char *selectshot[]     = { "system-utils", "printscreen", "select", NULL };
 // -- record my desktop --------------------------------------------
-static const char *rec_desk[]       = { "system-utils", "rec_desk", NULL };
-static const char *rec_desk_mute[]  = { "system-utils", "rec_desk_mute", NULL };
-static const char *rec_win[]        = { "system-utils", "rec_win", NULL };
-static const char *rec_win_mute[]   = { "system-utils", "rec_win_mute", NULL };
+static const char *rec_desk[]       = { "system-utils", "recordmydesktop", "all", NULL };
+static const char *rec_desk_mute[]  = { "system-utils", "recordmydesktop", "all", "mute", NULL };
+static const char *rec_win[]        = { "system-utils", "recordmydesktop", "select", NULL };
+static const char *rec_win_mute[]   = { "system-utils", "recordmydesktop", "select", "mute", NULL };
 // -- cmus ---------------------------------------------------------
 static const char *cmus[]           = { "urxvtc", "-name", "cmus", "-title", "C* Music Player", "-e", "cmus", NULL };
 static const char *cmus_prev[]      = { "cmus-remote", "--prev", NULL };
@@ -165,8 +163,6 @@ static const char *shutdown[]       = { "systemctl", "poweroff", NULL };
 // mappings
 static Key keys[] = {
     // modifier                     key             function    argument
-    // -- toggle touchpad ----------------------------------------------
-    { ControlMask|ShiftMask,        XK_BackSpace,   spawn,      {.v = touchpad } },
     // -- dmenu --------------------------------------------------------
     { 0,                            0x1008ff1b,     spawn,      {.v = dmenucmd } },
     { 0,                            XK_Menu,        spawn,      {.v = dmenucmd } },

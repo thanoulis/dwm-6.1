@@ -67,8 +67,7 @@ static const Rule rules[] = {
     // -- Files -------------------------------------------------------------------------------
     { "Xfe",                    NULL,           NULL,           1 << 4,     False,      -1 },
     { "URxvt",                  "mc",           NULL,           1 << 4,     False,      -1 },
-    { "URxvt",                  "rtorrent",     NULL,           1 << 4,     False,      -1 },
-    { "Octave-gui",             NULL,           NULL,           1 << 4,     False,      -1 },
+    { "octave-gui",             NULL,           NULL,           1 << 4,     False,      -1 },
     // -- Virtual -----------------------------------------------------------------------------
     { "Qemu-system-",           NULL,           NULL,           1 << 5,     False,      -1 },
     // -- Multimedia --------------------------------------------------------------------------
@@ -80,7 +79,6 @@ static const Rule rules[] = {
     { "wesnoth",                NULL,           NULL,           1 << 7,     False,      -1 },
     { "hwengine",               NULL,           NULL,           1 << 7,     True,       -1 },
     { "Hedgewars",              NULL,           NULL,           1 << 7,     False,      -1 },
-    { "manaplus",               NULL,           NULL,           1 << 7,     False       -1 },
     // -- Misc --------------------------------------------------------------------------------
     { "URxvt",                  "weechat",      NULL,           1 << 8,     False,      -1 },
     { "GParted",                NULL,           NULL,           1 << 8,     True,       -1 },
@@ -152,8 +150,8 @@ static const char *cmus_clear[]     = { "cmus-remote", "--clear", NULL };
 static const char *cmus_repeat[]    = { "cmus-remote", "--repeat", NULL };
 static const char *cmus_repeatcur[] = { "cmus-remote", "--raw", "toggle repeat_current", NULL };
 static const char *cmus_shuffle[]   = { "cmus-remote", "--shuffle", NULL };
-static const char *cmus_volup[]     = { "cmus-remote", "--volume", "+3%", NULL };
-static const char *cmus_voldown[]   = { "cmus-remote", "--volume", "-3%", NULL };
+static const char *cmus_volup[]     = { "cmus-remote", "--volume", "+2%", NULL };
+static const char *cmus_voldown[]   = { "cmus-remote", "--volume", "-2%", NULL };
 static const char *cmus_seekup[]    = { "cmus-remote", "--seek", "+10", NULL };
 static const char *cmus_seekdown[]  = { "cmus-remote", "--seek", "-10", NULL };
 // -- power management ---------------------------------------------

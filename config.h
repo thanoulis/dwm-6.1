@@ -26,14 +26,14 @@ static const char selfgcolor[]          = "#EEEEEE";
 */
 static const unsigned int borderpx      = 1;        // windows border (pixels)
 static const unsigned int snap          = 24;       // snap pixels
-static const int showbar                = 1;        // 0 means no bar
-static const int topbar                 = 1;        // 0 means bottom bar
+static const int showbar                = 1;        // 0: no bar
+static const int topbar                 = 1;        // 0: bottom bar
 
 // systray
 static const unsigned int systraypinning = 0;   // 0: sloppy systray follows selected monitor, >0: pin systray to monitor X
 static const unsigned int systrayspacing = 2;   // systray spacing
 static const int systraypinningfailfirst = 1;   // 1: if pinning fails, display systray on the first monitor, 0: display systray on the last monitor
-static const int showsystray             = 1;   // 0 means no systray
+static const int showsystray             = 1;   // 0: no systray
 
 // tagging
 static const char *tags[] = { "Main", "Web", "Office", "Graphics", "Files", "Virtual", "Multimedia", "Fun", "Misc" };
@@ -67,7 +67,6 @@ static const Rule rules[] = {
     // -- Files -------------------------------------------------------------------------------
     { "Xfe",                    NULL,           NULL,           1 << 4,     False,      -1 },
     { "URxvt",                  "mc",           NULL,           1 << 4,     False,      -1 },
-    { "octave-gui",             NULL,           NULL,           1 << 4,     False,      -1 },
     // -- Virtual -----------------------------------------------------------------------------
     { "Qemu-system-",           NULL,           NULL,           1 << 5,     False,      -1 },
     // -- Multimedia --------------------------------------------------------------------------
@@ -89,7 +88,7 @@ static const Rule rules[] = {
 // layout(s)
 static const float mfact        = 0.50;
 static const int nmaster        = 1;        // number of clients in master area
-static const int resizehints    = 0;        // 1 means respect size hints in tiled resizals
+static const int resizehints    = 0;        // 1: respect size hints in tiled resizals
 
 static const Layout layouts[] = {
     // symbol	arrange function
@@ -99,7 +98,6 @@ static const Layout layouts[] = {
 };
 
 // key definitions
-#define MODKEY  Mod1Mask    // for use with mouse
 #define AltKey  Mod1Mask    // Mod1Mask = Alt
 #define WinKey  Mod4Mask    // Mod4Mask = Win
 #define TAGKEYS(KEY,TAG) \
@@ -113,7 +111,7 @@ static const Layout layouts[] = {
 
 // commands
 // -- programs -----------------------------------------------------
-static char dmenumon[2]             = "0";      /* component of dmenucmd, manipulated in spawn() */
+static char dmenumon[2]             = "0";  // 0: first monitor 
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, "-p", "Execute:", NULL };
 static const char *urxvt[]          = { "urxvtc", NULL };
 static const char *xterm[]          = { "xterm", NULL };
@@ -288,50 +286,50 @@ static Key keys[] = {
 
 // button definitions
 #define TAGBUTTONS(TAG) \
-    { TAG,                  0,              Button1,        view,           {.ui = 1 << TAG} }, \
-    { TAG,                  0,              Button3,        toggleview,     {.ui = 1 << TAG} }, \
-    { TAG,                  WinKey,         Button1,        tag,            {.ui = 1 << TAG} }, \
-    { TAG,                  AltKey,         Button1,        tag,            {.ui = 1 << TAG} }, \
-    { TAG,                  WinKey,         Button3,        toggletag,      {.ui = 1 << TAG} }, \
-    { TAG,                  AltKey,         Button3,        toggletag,      {.ui = 1 << TAG} },
+    { TAG,              0,              Button1,        view,           {.ui = 1 << TAG} }, \
+    { TAG,              0,              Button3,        toggleview,     {.ui = 1 << TAG} }, \
+    { TAG,              WinKey,         Button1,        tag,            {.ui = 1 << TAG} }, \
+    { TAG,              AltKey,         Button1,        tag,            {.ui = 1 << TAG} }, \
+    { TAG,              WinKey,         Button3,        toggletag,      {.ui = 1 << TAG} }, \
+    { TAG,              AltKey,         Button3,        toggletag,      {.ui = 1 << TAG} },
 
 /* click can be a tag number (starting at 0),
  * ClkTagBar, ClkLtSymbol, ClkWinTitle, ClkStatusText, ClkRootWin and ClkClientWin */
 static Button buttons[] = {
-    // click                event mask      button          function        argument
+    // click            event mask      button          function        argument
     // -- click on tag bar (workspaces) -----------------------------------------
-    { ClkTagBar,            0,              Button1,        view,           {0} },
-    { ClkTagBar,            ControlMask,    Button1,        toggleview,     {0} },
-    { ClkTagBar,            0,              Button3,        toggleview,     {0} },
-    { ClkTagBar,            WinKey,         Button1,        tag,            {0} },
-    { ClkTagBar,            AltKey,         Button1,        tag,            {0} },
-    { ClkTagBar,            WinKey,         Button3,        toggletag,      {0} },
-    { ClkTagBar,            AltKey,         Button3,        toggletag,      {0} },
-    { ClkTagBar,            0,              Button4,        shiftview,      {.i = -1 } },
-    { ClkTagBar,            0,              Button5,        shiftview,      {.i = +1 } },
+    { ClkTagBar,        0,              Button1,        view,           {0} },
+    { ClkTagBar,        ControlMask,    Button1,        toggleview,     {0} },
+    { ClkTagBar,        0,              Button3,        toggleview,     {0} },
+    { ClkTagBar,        WinKey,         Button1,        tag,            {0} },
+    { ClkTagBar,        AltKey,         Button1,        tag,            {0} },
+    { ClkTagBar,        WinKey,         Button3,        toggletag,      {0} },
+    { ClkTagBar,        AltKey,         Button3,        toggletag,      {0} },
+    { ClkTagBar,        0,              Button4,        shiftview,      {.i = -1 } },
+    { ClkTagBar,        0,              Button5,        shiftview,      {.i = +1 } },
     // -- click on layout symbol set layouts ------------------------------------
-    { ClkLtSymbol,          0,              Button1,        setlayout,      {.v = &layouts[0]} },
-    { ClkLtSymbol,          0,              Button2,        setlayout,      {.v = &layouts[1]} },
-    { ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-    { ClkLtSymbol,          0,              Button4,        setlayout,      {.v = &layouts[0]} },
-    { ClkLtSymbol,          0,              Button5,        setlayout,      {.v = &layouts[0]} },
+    { ClkLtSymbol,      0,              Button1,        setlayout,      {.v = &layouts[0]} },
+    { ClkLtSymbol,      0,              Button2,        setlayout,      {.v = &layouts[1]} },
+    { ClkLtSymbol,      0,              Button3,        setlayout,      {.v = &layouts[2]} },
+    { ClkLtSymbol,      0,              Button4,        setlayout,      {.v = &layouts[0]} },
+    { ClkLtSymbol,      0,              Button5,        setlayout,      {.v = &layouts[0]} },
     // -- click on window title -------------------------------------------------
-    { ClkWinTitle,          0,              Button1,        focusstack,     {.i = +1 } },
-    { ClkWinTitle,          0,              Button2,        killclient,     {0} },
-    { ClkWinTitle,          0,              Button3,        togglefloating, {0} },
-    { ClkWinTitle,          0,              Button4,        focusstack,     {.i = -1 } },
-    { ClkWinTitle,          0,              Button5,        focusstack,     {.i = +1 } },
+    { ClkWinTitle,      0,              Button1,        focusstack,     {.i = +1 } },
+    { ClkWinTitle,      0,              Button2,        killclient,     {0} },
+    { ClkWinTitle,      0,              Button3,        togglefloating, {0} },
+    { ClkWinTitle,      0,              Button4,        focusstack,     {.i = -1 } },
+    { ClkWinTitle,      0,              Button5,        focusstack,     {.i = +1 } },
     // -- click on status bar (clock,etc) ---------------------------------------
-    { ClkStatusText,        0,              Button1,        spawn,          {.v = screenshot } },
-    { ClkStatusText,        WinKey,         Button1,        spawn,          {.v = selectshot } },
-    { ClkStatusText,        0,              Button3,        quit,           {0} },
+    { ClkStatusText,    0,              Button1,        spawn,          {.v = screenshot } },
+    { ClkStatusText,    WinKey,         Button1,        spawn,          {.v = selectshot } },
+    { ClkStatusText,    0,              Button3,        quit,           {0} },
     // -- click on root window (desktop/background) -----------------------------
-    { ClkRootWin,           0,              Button3,        spawn,          {.v = urxvt } },
+    { ClkRootWin,       0,              Button3,        spawn,          {.v = urxvt } },
     // -- click on focused window -----------------------------------------------
-    { ClkClientWin,         WinKey,         Button1,        movemouse,      {0} },
-    { ClkClientWin,         AltKey,         Button1,        movemouse,      {0} },
-    { ClkClientWin,         WinKey,         Button2,        togglefloating, {0} },
-    { ClkClientWin,         AltKey,         Button2,        togglefloating, {0} },
-    { ClkClientWin,         WinKey,         Button3,        resizemouse,    {0} },
-    { ClkClientWin,         AltKey,         Button3,        resizemouse,    {0} },
+    { ClkClientWin,     WinKey,         Button1,        movemouse,      {0} },
+    { ClkClientWin,     AltKey,         Button1,        movemouse,      {0} },
+    { ClkClientWin,     WinKey,         Button2,        togglefloating, {0} },
+    { ClkClientWin,     AltKey,         Button2,        togglefloating, {0} },
+    { ClkClientWin,     WinKey,         Button3,        resizemouse,    {0} },
+    { ClkClientWin,     AltKey,         Button3,        resizemouse,    {0} },
 };

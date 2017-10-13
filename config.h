@@ -74,7 +74,6 @@ static const Rule rules[] = {
     { "URxvt",                  "cmus",         NULL,           1 << 6,     False,      -1 },
     { "Easytag",                NULL,           NULL,           1 << 6,     False,      -1 },
     // -- Fun ---------------------------------------------------------------------------------
-    { "Gvbam",                  NULL,           NULL,           1 << 7,     True,       -1 },
     { "Pychess",                NULL,           NULL,           1 << 7,     True,       -1 },
     { "wesnoth",                NULL,           NULL,           1 << 7,     False,      -1 },
     { "hwengine",               NULL,           NULL,           1 << 7,     True,       -1 },
@@ -124,7 +123,7 @@ static const char *mc[]             = { "urxvtc", "-name", "mc", "-title", "File
 static const char *w3m[]            = { "urxvtc", "-name", "w3m", "-title", "Web Browser", "-e", "w3m", "-v", NULL };
 static const char *htop[]           = { "urxvtc", "-name", "htop", "-title", "System Monitor", "-e", "htop", NULL };
 static const char *mutt[]           = { "urxvtc", "-name", "mutt", "-title", "Mail Client", "-e", "mutt", NULL };
-static const char *weechat[]        = { "urxvtc", "-name", "weechat", "-title", "IRC Client", "-e", "weechat-curses", NULL };
+static const char *weechat[]        = { "urxvtc", "-name", "weechat", "-title", "IRC Client", "-e", "weechat", NULL };
 // -- info ---------------------------------------------------------
 static const char *xprop[]          = { "system-utils", "xprop", NULL };
 static const char *system_info[]    = { "system-utils", "info", NULL };
@@ -199,9 +198,9 @@ static Key keys[] = {
     { WinKey,                       XK_Print,       spawn,      {.v = selectshot } },
     // -- record desktop -----------------------------------------------
     { ControlMask,                  XK_Print,       spawn,      {.v = rec_desk } },
-    { ControlMask|ShiftMask,        XK_Print,       spawn,      {.v = rec_desk_mute } },
+    { ControlMask|AltKey,           XK_Print,       spawn,      {.v = rec_desk_mute } },
     { ControlMask|WinKey,           XK_Print,       spawn,      {.v = rec_win } },
-    { ControlMask|WinKey|ShiftMask, XK_Print,       spawn,      {.v = rec_win_mute } },
+    { ControlMask|WinKey|AltKey,    XK_Print,       spawn,      {.v = rec_win_mute } },
     // -- xprop --------------------------------------------------------
     { WinKey,                       XK_slash,       spawn,      {.v = xprop } },
     // -- music --------------------------------------------------------

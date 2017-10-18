@@ -111,7 +111,7 @@ static const Layout layouts[] = {
 
 // commands
 // -- programs -----------------------------------------------------
-static char dmenumon[2]             = "0";  // 0: first monitor 
+static char dmenumon[2]             = "0";  // 0: first monitor
 static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, "-p", "Execute:", NULL };
 static const char *urxvt[]          = { "urxvtc", NULL };
 static const char *xterm[]          = { "xterm", NULL };
@@ -189,7 +189,7 @@ static Key keys[] = {
     { WinKey,                       XK_minus,       spawn,      {.v = volume_down } },
     { WinKey,                       XK_KP_Subtract, spawn,      {.v = volume_down } },
     { 0,                            0x1008ff12,     spawn,      {.v = volume_toggle } },
-    { WinKey,                       XK_BackSpace,   spawn,      {.v = volume_toggle } },    
+    { WinKey,                       XK_BackSpace,   spawn,      {.v = volume_toggle } },
     { WinKey,                       XK_KP_Multiply, spawn,      {.v = volume_toggle } },
     // -- screenshots --------------------------------------------------
     { 0,                            XK_Print,       spawn,      {.v = screenshot } },

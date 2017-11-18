@@ -1,29 +1,16 @@
 // custom dwm header file
 
 // appearance
-static const char *fonts[]              = { "Droid Sans Mono:size=9" };
-static const char dmenufont[]           = "Droid Sans Mono:size=9";
+static const char *fonts[]              = { "DejaVu Sans Mono:size=9" };
+static const char dmenufont[]           = "DejaVu Sans Mono:size=9";
+
 static const char normbordercolor[]     = "#3F403D";
 static const char normbgcolor[]         = "#D6D6D6";
 static const char normfgcolor[]         = "#4E4E4E";
 static const char selbordercolor[]      = "#7AA3CC";
 static const char selbgcolor[]          = "#4E4E4E";
 static const char selfgcolor[]          = "#D6D6D6";
-/*
-static const char normbordercolor[]     = "#3F403D";
-static const char normbgcolor[]         = "#666666";
-static const char normfgcolor[]         = "#000000";
-static const char selbordercolor[]      = "#7AA3CC";
-static const char selbgcolor[]          = "#3F403D";
-static const char selfgcolor[]          = "#7AA3CC";
 
-static const char normbordercolor[]     = "#444444";
-static const char normbgcolor[]         = "#222222";
-static const char normfgcolor[]         = "#BBBBBB";
-static const char selbordercolor[]      = "#005577";
-static const char selbgcolor[]          = "#005577";
-static const char selfgcolor[]          = "#EEEEEE";
-*/
 static const unsigned int borderpx      = 1;        // windows border (pixels)
 static const unsigned int snap          = 24;       // snap pixels
 static const int showbar                = 1;        // 0: no bar
@@ -58,14 +45,12 @@ static const Rule rules[] = {
     { "URxvt",                  "mutt",         NULL,           1 << 1,     False,      -1 },
     { "Firefox",                "Navigator",    NULL,           1 << 1,     False,      -1 },
     // -- Office ------------------------------------------------------------------------------
-    { "Xchm",                   NULL,           NULL,           1 << 2,     False,      -1 },
     { "MuPDF",                  NULL,           NULL,           1 << 2,     False,      -1 },
     { "libreoffice",            NULL,           NULL,           1 << 2,     False,      -1 },
     // -- Graphics ----------------------------------------------------------------------------
     { "Gimp",                   NULL,           NULL,           1 << 3,     True,       -1 },
     { "Inkscape",               NULL,           NULL,           1 << 3,     False,      -1 },
     // -- Files -------------------------------------------------------------------------------
-    { "Xfe",                    NULL,           NULL,           1 << 4,     False,      -1 },
     { "URxvt",                  "mc",           NULL,           1 << 4,     False,      -1 },
     // -- Virtual -----------------------------------------------------------------------------
     { "Qemu-system-",           NULL,           NULL,           1 << 5,     False,      -1 },
@@ -75,8 +60,6 @@ static const Rule rules[] = {
     // -- Fun ---------------------------------------------------------------------------------
     { "Pychess",                NULL,           NULL,           1 << 7,     True,       -1 },
     { "wesnoth",                NULL,           NULL,           1 << 7,     False,      -1 },
-    { "hwengine",               NULL,           NULL,           1 << 7,     True,       -1 },
-    { "Hedgewars",              NULL,           NULL,           1 << 7,     False,      -1 },
     // -- Misc --------------------------------------------------------------------------------
     { "URxvt",                  "weechat",      NULL,           1 << 8,     False,      -1 },
     { "GParted",                NULL,           NULL,           1 << 8,     True,       -1 },
@@ -116,9 +99,8 @@ static const char *dmenucmd[]       = { "dmenu_run", "-m", dmenumon, "-fn", dmen
 static const char *urxvt[]          = { "urxvtc", NULL };
 static const char *xterm[]          = { "xterm", NULL };
 static const char *firefox[]        = { "firefox", NULL, NULL, NULL, "Firefox" };
-static const char *xfe[]            = { "xfe", NULL, NULL, NULL, "Xfe" };
 static const char *mc[]             = { "urxvtc", "-name", "mc", "-title", "File Manager", "-e", "mc", NULL };
-static const char *w3m[]            = { "urxvtc", "-name", "w3m", "-title", "Web Browser", "-e", "w3m", "-v", NULL };
+static const char *tmux[]           = { "urxvtc", "-name", "tmux", "-title", "Terminal Multiplexer", "-e", "tmux", NULL };
 static const char *htop[]           = { "urxvtc", "-name", "htop", "-title", "System Monitor", "-e", "htop", NULL };
 static const char *mutt[]           = { "urxvtc", "-name", "mutt", "-title", "Mail Client", "-e", "mutt", NULL };
 static const char *weechat[]        = { "urxvtc", "-name", "weechat", "-title", "IRC Client", "-e", "weechat", NULL };
@@ -164,15 +146,13 @@ static Key keys[] = {
     { WinKey,                       XK_r,           spawn,      {.v = dmenucmd } },
     // -- terminal -----------------------------------------------------
     { WinKey,                       XK_Return,      spawn,      {.v = urxvt } },
-    { WinKey,                       XK_t,           spawn,      {.v = urxvt } },
+    { WinKey,                       XK_t,           spawn,      {.v = tmux } },
     { WinKey|ShiftMask,             XK_t,           spawn,      {.v = xterm } },
     // -- web browser --------------------------------------------------
-    { 0,                            0x1008ff18,     spawn,      {.v = firefox } },
+    { 0,                            0x1008ff18,     runorraise, {.v = firefox } },
     { WinKey,                       XK_w,           runorraise, {.v = firefox } },
-    { WinKey|ShiftMask,             XK_w,           spawn,      {.v = w3m } },
     // -- file manager -------------------------------------------------
-    { WinKey,                       XK_f,           runorraise, {.v = xfe } },
-    { WinKey|ShiftMask,             XK_f,           spawn,      {.v = mc } },
+    { WinKey,                       XK_f,           spawn,      {.v = mc } },
     // -- processes ----------------------------------------------------
     { WinKey,                       XK_p,           spawn,      {.v = htop } },
     // -- mail client --------------------------------------------------
@@ -204,12 +184,15 @@ static Key keys[] = {
     // -- music --------------------------------------------------------
     { WinKey,                       XK_m,           spawn,      {.v = cmus } },
     { WinKey,                       XK_KP_Divide,   spawn,      {.v = cmus } },
+    { 0,                            0x1008ff14,     spawn,      {.v = cmus_toggle } },
     { WinKey,                       XK_KP_8,        spawn,      {.v = cmus_toggle } },
     { WinKey,                       XK_KP_Up,       spawn,      {.v = cmus_toggle } },
     { WinKey,                       XK_KP_2,        spawn,      {.v = cmus_stop } },
     { WinKey,                       XK_KP_Down,     spawn,      {.v = cmus_stop } },
+    { 0,                            0x1008ff16,     spawn,      {.v = cmus_prev } },
     { WinKey,                       XK_KP_4,        spawn,      {.v = cmus_prev } },
     { WinKey,                       XK_KP_Left,     spawn,      {.v = cmus_prev } },
+    { 0,                            0x1008ff17,     spawn,      {.v = cmus_next } },
     { WinKey,                       XK_KP_6,        spawn,      {.v = cmus_next } },
     { WinKey,                       XK_KP_Right,    spawn,      {.v = cmus_next } },
     { WinKey,                       XK_KP_Decimal,  spawn,      {.v = cmus_clear } },

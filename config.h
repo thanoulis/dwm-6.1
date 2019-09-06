@@ -38,6 +38,7 @@ static const Rule rules[] = {
     { "Xmessage",               NULL,           NULL,           0,          True,       -1 },
     { "MPlayer",                NULL,           NULL,           0,          True,       -1 },
     { "Firefox",                NULL,           NULL,           0,          True,       -1 },
+    { "firefox",                NULL,           NULL,           0,          True,       -1 },
     { "XFontSel",               NULL,           NULL,           0,          True,       -1 },
     { "Gtk2fontsel",            NULL,           NULL,           0,          True,       -1 },
     { "Xarchiver",              NULL,           NULL,           0,          True,       -1 },
@@ -58,6 +59,7 @@ static const Rule rules[] = {
     { "URxvt",                  "cmus",         NULL,           1 << 6,     False,      -1 },
     { "Easytag",                NULL,           NULL,           1 << 6,     False,      -1 },
     // -- Fun ---------------------------------------------------------------------------------
+    { "t-engine",               NULL,           NULL,           1 << 7,     False,      -1 },
     { "Pychess",                NULL,           NULL,           1 << 7,     True,       -1 },
     { "wesnoth",                NULL,           NULL,           1 << 7,     False,      -1 },
     // -- Misc --------------------------------------------------------------------------------

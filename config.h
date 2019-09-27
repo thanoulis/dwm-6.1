@@ -37,13 +37,12 @@ static const Rule rules[] = {
     { "Stardict",               NULL,           NULL,           0,          True,       -1 },
     { "Xmessage",               NULL,           NULL,           0,          True,       -1 },
     { "MPlayer",                NULL,           NULL,           0,          True,       -1 },
-    { "Firefox",                NULL,           NULL,           0,          True,       -1 },
-    { "firefox",                NULL,           NULL,           0,          True,       -1 },
     { "XFontSel",               NULL,           NULL,           0,          True,       -1 },
     { "Gtk2fontsel",            NULL,           NULL,           0,          True,       -1 },
     { "Xarchiver",              NULL,           NULL,           0,          True,       -1 },
     // -- Web ---------------------------------------------------------------------------------
     { "URxvt",                  "mutt",         NULL,           1 << 1,     False,      -1 },
+    { "firefox",                "Navigator",    NULL,           1 << 1,     False,      -1 },
     { "Firefox",                "Navigator",    NULL,           1 << 1,     False,      -1 },
     // -- Office ------------------------------------------------------------------------------
     { "MuPDF",                  NULL,           NULL,           1 << 2,     False,      -1 },
